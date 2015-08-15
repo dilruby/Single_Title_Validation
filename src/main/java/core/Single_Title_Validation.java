@@ -7,12 +7,21 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Single_Title_Validation {
 	public static void main(String[] args) {
-
-		WebDriver driver = new FirefoxDriver();    // Version 1.1 :: Firefox
+		
+		if (args.length == 0) {
+			System.err.println("No arguments");
+			System.exit(1);
+		}
+		
+		WebDriver driver = new FirefoxDriver(); // Version 1.1 :: Firefox
 
 		String text_case_id = "TC-001.01";
-		String url = "http://learn2test.net/qa/apps/sign_up/v1/index.php";
-		String title_expected = "Welcome to Sign Up v1";
+		// String url = "http://learn2test.net/qa/apps/sign_up/v1/index.php";
+		// String title_expected = "Welcome to Sign Up v1";
+
+		String param[] = args[0].split("\\|");
+		String url = param[0];
+		String title_expected = param[1];
 		
 		driver.get(url);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
